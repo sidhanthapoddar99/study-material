@@ -1,0 +1,1049 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Hyperparameter Tunning\_1}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{digital-assignment-6}{%
+\section{DIGITAL ASSIGNMENT 6}\label{digital-assignment-6}}
+
+\hypertarget{name-sidhantha-poddar}{%
+\subsubsection{NAME SIDHANTHA PODDAR}\label{name-sidhantha-poddar}}
+
+\hypertarget{reg-17bce2044}{%
+\subsubsection{REG 17BCE2044}\label{reg-17bce2044}}
+
+    \hypertarget{book-recommendation}{%
+\section{BOOK RECOMMENDATION}\label{book-recommendation}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+ch}{\PYZsh{}!/usr/bin/env python3}
+        
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k}{import} \PY{n}{defaultdict}
+        \PY{k+kn}{import} \PY{n+nn}{surprise}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{train} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{train}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:}        Unnamed: 0  User-ID        ISBN  Book-Rating
+         0            1465   277427  0060542128            7
+         1            1474   277427  0061009059            9
+         2            1522   277427  0316776963            8
+         3            1543   277427  0345413903           10
+         4            1564   277427  0380702843            8
+         5            1570   277427  0380791978            9
+         6            1578   277427  0385424736            9
+         7            1581   277427  0385486804            9
+         8            1583   277427  0385503857            9
+         9            1584   277427  0385504209            8
+         10           1586   277427  039304016X            8
+         11           1601   277427  0399501487            9
+         12           1607   277427  0425104338            9
+         13           1611   277427  0425116840            8
+         14           1615   277427  0425133516            9
+         15           1637   277427  0440185327            5
+         16           1647   277427  0440224764            7
+         17           1652   277427  0440236738            9
+         18           1655   277427  0440428130            8
+         19           1659   277427  0441627404           10
+         20           1662   277427  0446350982            9
+         21           1664   277427  0446600415           10
+         22           1688   277427  0451191153            8
+         23           1690   277427  0451203593           10
+         24           1694   277427  0452284449            6
+         25           1718   277427  0553280368            9
+         26           1724   277427  0553571656           10
+         27           1728   277427  0553573926           10
+         28           1736   277427  0553581929            9
+         29           1768   277427  0671876821            8
+         {\ldots}           {\ldots}      {\ldots}         {\ldots}          {\ldots}
+         37518     1148367   276231  0671016768            6
+         37519     1148368   276231  0671025333            2
+         37520     1148370   276231  067976402X            7
+         37521     1148373   276231  1551669455            6
+         37522     1149457   276680  0060987561            7
+         37523     1149465   276680  0140264795            7
+         37524     1149475   276680  0156028778           10
+         37525     1149493   276680  0316666343            7
+         37526     1149498   276680  0345423291            8
+         37527     1149500   276680  0345436911            8
+         37528     1149504   276680  0374121230            7
+         37529     1149507   276680  0375412530            7
+         37530     1149514   276680  0375712925            7
+         37531     1149515   276680  0375727132            8
+         37532     1149516   276680  0375727345            8
+         37533     1149519   276680  0385260083            9
+         37534     1149524   276680  0385337116            9
+         37535     1149529   276680  0385503857            8
+         37536     1149530   276680  0385504209            8
+         37537     1149532   276680  0385720467            8
+         37538     1149555   276680  0449149900            1
+         37539     1149563   276680  0452283086            6
+         37540     1149575   276680  0679410325            9
+         37541     1149580   276680  0679771476            7
+         37542     1149589   276680  0688163165           10
+         37543     1149590   276680  0688163173           10
+         37544     1149604   276680  0743486226            6
+         37545     1149627   276680  1573222038           10
+         37546     1149629   276680  1573229083            7
+         37547     1149637   276680  1931561648            9
+         
+         [37548 rows x 4 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{train}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} (37548, 4)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{precision\PYZus{}recall\PYZus{}at\PYZus{}k}\PY{p}{(}\PY{n}{predictions}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{threshold}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Return precision and recall at k metrics for each user.\PYZsq{}\PYZsq{}\PYZsq{}}
+        
+            \PY{c+c1}{\PYZsh{} First map the predictions to each user.}
+            \PY{n}{user\PYZus{}est\PYZus{}true} \PY{o}{=} \PY{n}{defaultdict}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}
+            \PY{k}{for} \PY{n}{uid}\PY{p}{,} \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{true\PYZus{}r}\PY{p}{,} \PY{n}{est}\PY{p}{,} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n}{predictions}\PY{p}{:}
+                \PY{n}{user\PYZus{}est\PYZus{}true}\PY{p}{[}\PY{n}{uid}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{est}\PY{p}{,} \PY{n}{true\PYZus{}r}\PY{p}{)}\PY{p}{)}
+        
+            \PY{n}{precisions} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+            \PY{n}{recalls} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+            \PY{k}{for} \PY{n}{uid}\PY{p}{,} \PY{n}{user\PYZus{}ratings} \PY{o+ow}{in} \PY{n}{user\PYZus{}est\PYZus{}true}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        
+                \PY{c+c1}{\PYZsh{} Sort user ratings by estimated value}
+                \PY{n}{user\PYZus{}ratings}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        
+                \PY{c+c1}{\PYZsh{} Number of relevant items}
+                \PY{n}{n\PYZus{}rel} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{true\PYZus{}r} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{threshold}\PY{p}{)} \PY{k}{for} \PY{p}{(}\PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{true\PYZus{}r}\PY{p}{)} \PY{o+ow}{in} \PY{n}{user\PYZus{}ratings}\PY{p}{)}
+        
+                \PY{c+c1}{\PYZsh{} Number of recommended items in top k}
+                \PY{n}{n\PYZus{}rec\PYZus{}k} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{est} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{threshold}\PY{p}{)} \PY{k}{for} \PY{p}{(}\PY{n}{est}\PY{p}{,} \PY{n}{\PYZus{}}\PY{p}{)} \PY{o+ow}{in} \PY{n}{user\PYZus{}ratings}\PY{p}{[}\PY{p}{:}\PY{n}{k}\PY{p}{]}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} Number of relevant and recommended items in top k}
+                \PY{n}{n\PYZus{}rel\PYZus{}and\PYZus{}rec\PYZus{}k} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{true\PYZus{}r} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{threshold}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{n}{est} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{threshold}\PY{p}{)}\PY{p}{)}
+                                      \PY{k}{for} \PY{p}{(}\PY{n}{est}\PY{p}{,} \PY{n}{true\PYZus{}r}\PY{p}{)} \PY{o+ow}{in} \PY{n}{user\PYZus{}ratings}\PY{p}{[}\PY{p}{:}\PY{n}{k}\PY{p}{]}\PY{p}{)}
+        
+                \PY{c+c1}{\PYZsh{} Precision@K: Proportion of recommended items that are relevant}
+                \PY{n}{precisions}\PY{p}{[}\PY{n}{uid}\PY{p}{]} \PY{o}{=} \PY{n}{n\PYZus{}rel\PYZus{}and\PYZus{}rec\PYZus{}k} \PY{o}{/} \PY{n}{n\PYZus{}rec\PYZus{}k} \PY{k}{if} \PY{n}{n\PYZus{}rec\PYZus{}k} \PY{o}{!=} \PY{l+m+mi}{0} \PY{k}{else} \PY{l+m+mi}{1}
+                \PY{n}{precision} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{prec} \PY{k}{for} \PY{n}{prec} \PY{o+ow}{in} \PY{n}{precisions}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{precisions}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{} Recall@K: Proportion of relevant items that are recommended}
+                \PY{n}{recalls}\PY{p}{[}\PY{n}{uid}\PY{p}{]} \PY{o}{=} \PY{n}{n\PYZus{}rel\PYZus{}and\PYZus{}rec\PYZus{}k} \PY{o}{/} \PY{n}{n\PYZus{}rel} \PY{k}{if} \PY{n}{n\PYZus{}rel} \PY{o}{!=} \PY{l+m+mi}{0} \PY{k}{else} \PY{l+m+mi}{1}
+                \PY{n}{recall} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{rec} \PY{k}{for} \PY{n}{rec} \PY{o+ow}{in} \PY{n}{recalls}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{recalls}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{}f\PYZus{}score = (2*precision*recall)/(precision+recall)}
+                
+            \PY{k}{return} \PY{n}{precision}\PY{p}{,} \PY{n}{recall}\PY{c+c1}{\PYZsh{}, f\PYZus{}score}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{ndcg\PYZus{}at\PYZus{}k}\PY{p}{(}\PY{n}{predictions}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{:}
+            \PY{n}{dcgs} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+            \PY{n}{idcgs} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} First map the predictions to each user.}
+            \PY{n}{user\PYZus{}est\PYZus{}true} \PY{o}{=} \PY{n}{defaultdict}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}
+            \PY{k}{for} \PY{n}{uid}\PY{p}{,} \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{true\PYZus{}r}\PY{p}{,} \PY{n}{est}\PY{p}{,} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n}{predictions}\PY{p}{:}
+                \PY{n}{user\PYZus{}est\PYZus{}true}\PY{p}{[}\PY{n}{uid}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{est}\PY{p}{,} \PY{n}{true\PYZus{}r}\PY{p}{)}\PY{p}{)}
+                
+            \PY{k}{for} \PY{n}{uid}\PY{p}{,} \PY{n}{user\PYZus{}ratings} \PY{o+ow}{in} \PY{n}{user\PYZus{}est\PYZus{}true}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Sort user ratings by estimated value}
+                \PY{n}{user\PYZus{}ratings}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{}estimated rank}
+                \PY{n}{rank\PYZus{}est} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{user\PYZus{}ratings}\PY{p}{[}\PY{p}{:}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+                \PY{n}{discount\PYZus{}est} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log2}\PY{p}{(}\PY{n}{rank\PYZus{}est}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{}Relevance }
+                \PY{n}{rel} \PY{o}{=} \PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{power}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{true\PYZus{}r}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{k}{for} \PY{p}{(}\PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{true\PYZus{}r}\PY{p}{)} \PY{o+ow}{in} \PY{n}{user\PYZus{}ratings}\PY{p}{[}\PY{p}{:}\PY{n}{k}\PY{p}{]}\PY{p}{]}
+                
+                \PY{n}{dcgs}\PY{p}{[}\PY{n}{uid}\PY{p}{]} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{rel}\PY{o}{/}\PY{n}{discount\PYZus{}est}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} Sort user ratings by true value}
+                \PY{n}{user\PYZus{}ratings}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{}estimated rank}
+                \PY{n}{rank\PYZus{}true} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{user\PYZus{}ratings}\PY{p}{[}\PY{p}{:}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+                \PY{n}{discount\PYZus{}true} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log2}\PY{p}{(}\PY{n}{rank\PYZus{}true}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{}Relevance }
+                \PY{n}{rel\PYZus{}true} \PY{o}{=} \PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{power}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{true\PYZus{}r}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{k}{for} \PY{p}{(}\PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{true\PYZus{}r}\PY{p}{)} \PY{o+ow}{in} \PY{n}{user\PYZus{}ratings}\PY{p}{[}\PY{p}{:}\PY{n}{k}\PY{p}{]}\PY{p}{]}
+                
+                \PY{n}{idcgs}\PY{p}{[}\PY{n}{uid}\PY{p}{]} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{rel\PYZus{}true}\PY{o}{/}\PY{n}{discount\PYZus{}true}\PY{p}{)}
+                
+            \PY{n}{dcg} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{dcgu} \PY{k}{for} \PY{p}{(}\PY{n}{\PYZus{}}\PY{p}{,}\PY{n}{dcgu}\PY{p}{)} \PY{o+ow}{in} \PY{n}{dcgs}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            \PY{n}{idcg} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{idcgu} \PY{k}{for} \PY{p}{(}\PY{n}{\PYZus{}}\PY{p}{,}\PY{n}{idcgu}\PY{p}{)} \PY{o+ow}{in} \PY{n}{idcgs}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            \PY{k}{return} \PY{n}{dcg}\PY{o}{/}\PY{n}{idcg}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{train} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+        
+        \PY{n}{reader} \PY{o}{=} \PY{n}{surprise}\PY{o}{.}\PY{n}{Reader}\PY{p}{(}\PY{n}{rating\PYZus{}scale}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+        \PY{n}{data} \PY{o}{=} \PY{n}{surprise}\PY{o}{.}\PY{n}{Dataset}\PY{o}{.}\PY{n}{load\PYZus{}from\PYZus{}df}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{User\PYZhy{}ID}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ISBN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Book\PYZhy{}Rating}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{reader}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Tunning on number of factors and learning rate}
+        \PY{n}{factors} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{]}
+        \PY{n}{learning\PYZus{}rates} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.0001}\PY{p}{,} \PY{l+m+mf}{0.001}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.02}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{m} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{factors}\PY{p}{)}
+        \PY{n}{n} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{learning\PYZus{}rates}\PY{p}{)}
+        \PY{n}{test\PYZus{}ndcg} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{train\PYZus{}ndcg} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{test\PYZus{}precision} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{train\PYZus{}precision} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{test\PYZus{}recall} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{train\PYZus{}recall} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{train\PYZus{}f\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{test\PYZus{}f\PYZus{}score} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{threshold} \PY{o}{=} \PY{l+m+mi}{7}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{factors}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{learning\PYZus{}rates}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{fact} \PY{o}{=} \PY{n}{factors}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                \PY{n}{rate} \PY{o}{=} \PY{n}{learning\PYZus{}rates}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ No. of factors:}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{, learning rate:}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{fact}\PY{p}{,} \PY{n}{rate}\PY{p}{)}\PY{p}{)}
+                \PY{n}{data}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{n}{n\PYZus{}folds}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+                \PY{n}{algo} \PY{o}{=} \PY{n}{surprise}\PY{o}{.}\PY{n}{SVD}\PY{p}{(}\PY{n}{n\PYZus{}factors} \PY{o}{=} \PY{n}{fact}\PY{p}{,} \PY{n}{lr\PYZus{}all} \PY{o}{=} \PY{n}{rate}\PY{p}{)}\PY{c+c1}{\PYZsh{}n\PYZus{}factors = , lr\PYZus{}all =, reg\PYZus{}all =}
+                
+                
+                \PY{n}{precisions\PYZus{}train} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{recalls\PYZus{}train} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{f\PYZus{}scores\PYZus{}train} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{ndcgs\PYZus{}train} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        
+                \PY{n}{precisions\PYZus{}test} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{recalls\PYZus{}test} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{f\PYZus{}scores\PYZus{}test} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{ndcgs\PYZus{}test} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                
+                \PY{k}{for} \PY{n}{trainset}\PY{p}{,} \PY{n}{testset} \PY{o+ow}{in} \PY{n}{data}\PY{o}{.}\PY{n}{folds}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        
+                    \PY{n}{algo}\PY{o}{.}\PY{n}{train}\PY{p}{(}\PY{n}{trainset}\PY{p}{)}
+        
+                    \PY{n}{predictions\PYZus{}train} \PY{o}{=} \PY{n}{algo}\PY{o}{.}\PY{n}{test}\PY{p}{(}\PY{n}{trainset}\PY{o}{.}\PY{n}{build\PYZus{}testset}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{precision\PYZus{}train}\PY{p}{,} \PY{n}{recall\PYZus{}train}\PY{o}{=} \PY{n}{precision\PYZus{}recall\PYZus{}at\PYZus{}k}\PY{p}{(}\PY{n}{predictions\PYZus{}train}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{threshold}\PY{p}{)}
+                    \PY{n}{ndcg\PYZus{}train} \PY{o}{=} \PY{n}{ndcg\PYZus{}at\PYZus{}k}\PY{p}{(}\PY{n}{predictions\PYZus{}train}\PY{p}{,} \PY{n}{k}\PY{p}{)}
+        
+                    \PY{n}{precisions\PYZus{}train}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{precision\PYZus{}train}\PY{p}{)}
+                    \PY{n}{recalls\PYZus{}train}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{recall\PYZus{}train}\PY{p}{)}
+                    \PY{n}{f}\PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{precision\PYZus{}train}\PY{o}{*}\PY{n}{recall\PYZus{}train}\PY{o}{/}\PY{p}{(}\PY{n}{precision\PYZus{}train}\PY{o}{+}\PY{n}{recall\PYZus{}train}\PY{p}{)}
+                    \PY{n}{f\PYZus{}scores\PYZus{}train}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+                    \PY{n}{ndcgs\PYZus{}train}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ndcg\PYZus{}train}\PY{p}{)}
+        
+        
+                    \PY{n}{predictions\PYZus{}test} \PY{o}{=} \PY{n}{algo}\PY{o}{.}\PY{n}{test}\PY{p}{(}\PY{n}{testset}\PY{p}{)}
+                    \PY{n}{precision\PYZus{}test}\PY{p}{,} \PY{n}{recall\PYZus{}test} \PY{o}{=} \PY{n}{precision\PYZus{}recall\PYZus{}at\PYZus{}k}\PY{p}{(}\PY{n}{predictions\PYZus{}test}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{threshold}\PY{p}{)}
+                    \PY{n}{ndcg\PYZus{}test} \PY{o}{=} \PY{n}{ndcg\PYZus{}at\PYZus{}k}\PY{p}{(}\PY{n}{predictions\PYZus{}test}\PY{p}{,} \PY{n}{k}\PY{p}{)}
+        
+                    \PY{n}{precisions\PYZus{}test}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{precision\PYZus{}test}\PY{p}{)}
+                    \PY{n}{recalls\PYZus{}test}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{recall\PYZus{}test}\PY{p}{)}
+                    \PY{n}{f}\PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{precision\PYZus{}test}\PY{o}{*}\PY{n}{recall\PYZus{}test}\PY{o}{/}\PY{p}{(}\PY{n}{precision\PYZus{}test}\PY{o}{+}\PY{n}{recall\PYZus{}test}\PY{p}{)}
+                    \PY{n}{f\PYZus{}scores\PYZus{}test}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+                    \PY{n}{ndcgs\PYZus{}test}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ndcg\PYZus{}test}\PY{p}{)}    
+        
+        
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ Training Set accuracy:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Precision: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{precisions\PYZus{}train}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{n}{train\PYZus{}precision}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{precisions\PYZus{}train}\PY{p}{)}
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Recall: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{recalls\PYZus{}train}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{n}{train\PYZus{}recall}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{recalls\PYZus{}train}\PY{p}{)}
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{F\PYZhy{}Score: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{f\PYZus{}scores\PYZus{}train}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{n}{train\PYZus{}f\PYZus{}score}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{f\PYZus{}scores\PYZus{}train}\PY{p}{)}
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NDCG: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{ndcgs\PYZus{}train}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{n}{train\PYZus{}ndcg}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{ndcgs\PYZus{}train}\PY{p}{)}
+        
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ Test Set accuracy:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Precision: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{precisions\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{n}{test\PYZus{}precision}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{precisions\PYZus{}test}\PY{p}{)}
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Recall: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{recalls\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{n}{test\PYZus{}recall}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{recalls\PYZus{}test}\PY{p}{)}
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{F\PYZhy{}Score: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{f\PYZus{}scores\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{n}{test\PYZus{}f\PYZus{}score}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{f\PYZus{}scores\PYZus{}test}\PY{p}{)}
+                \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NDCG: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{ndcgs\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{n}{test\PYZus{}ndcg}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{ndcgs\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+ No. of factors:5, learning rate:0.0001
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}Sid\textbackslash{}AppData\textbackslash{}Local\textbackslash{}conda\textbackslash{}conda\textbackslash{}envs\textbackslash{}cten\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}surprise\textbackslash{}dataset.py:193: UserWarning: Using data.split() or using load\_from\_folds() without using a CV iterator is now deprecated. 
+  UserWarning)
+C:\textbackslash{}Users\textbackslash{}Sid\textbackslash{}AppData\textbackslash{}Local\textbackslash{}conda\textbackslash{}conda\textbackslash{}envs\textbackslash{}cten\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}surprise\textbackslash{}prediction\_algorithms\textbackslash{}algo\_base.py:51: UserWarning: train() is deprecated. Use fit() instead
+  warnings.warn('train() is deprecated. Use fit() instead', UserWarning)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+ Training Set accuracy:
+Precision: 0.8498747708573104
+Recall: 0.6379219607189309
+F-Score: 0.728800628583746
+NDCG: 0.715036368284687
+
+ Test Set accuracy:
+Precision: 0.8218327139347671
+Recall: 0.9182669341398849
+F-Score: 0.8673756214944803
+NDCG: 0.7968733667339462
+
+ No. of factors:5, learning rate:0.001
+
+ Training Set accuracy:
+Precision: 0.8829744319392901
+Recall: 0.6528810070421077
+F-Score: 0.7506904058926993
+NDCG: 0.7856417770817115
+
+ Test Set accuracy:
+Precision: 0.8329116511121986
+Recall: 0.9125801561509139
+F-Score: 0.8709266244482143
+NDCG: 0.8193942569304787
+
+ No. of factors:5, learning rate:0.01
+
+ Training Set accuracy:
+Precision: 0.9466612667149803
+Recall: 0.61368169617078
+F-Score: 0.7446395979393016
+NDCG: 0.861626665890804
+
+ Test Set accuracy:
+Precision: 0.8614909841008838
+Recall: 0.819357409273539
+F-Score: 0.8398740673141869
+NDCG: 0.8221503207143019
+
+ No. of factors:5, learning rate:0.02
+
+ Training Set accuracy:
+Precision: 0.9754900811413793
+Recall: 0.6335667254383348
+F-Score: 0.7681974981709465
+NDCG: 0.9240348472106046
+
+ Test Set accuracy:
+Precision: 0.8587536613707656
+Recall: 0.789677605035995
+F-Score: 0.8227236578564265
+NDCG: 0.8131783324641966
+
+ No. of factors:5, learning rate:0.05
+
+ Training Set accuracy:
+Precision: 0.9968796627872276
+Recall: 0.6470196651624232
+F-Score: 0.7847203345797064
+NDCG: 0.9736693283659399
+
+ Test Set accuracy:
+Precision: 0.8499510631065545
+Recall: 0.7473752321123535
+F-Score: 0.7953580063938839
+NDCG: 0.7982324192078781
+
+ No. of factors:10, learning rate:0.0001
+
+ Training Set accuracy:
+Precision: 0.8444625627033829
+Recall: 0.6349988269686824
+F-Score: 0.7249021443035655
+NDCG: 0.6977695932597112
+
+ Test Set accuracy:
+Precision: 0.8220734807814849
+Recall: 0.9183998893001625
+F-Score: 0.8675672692945775
+NDCG: 0.7927889764257499
+
+ No. of factors:10, learning rate:0.001
+
+ Training Set accuracy:
+Precision: 0.8839384298929928
+Recall: 0.6535401686954542
+F-Score: 0.7514761105043388
+NDCG: 0.7891976758952849
+
+ Test Set accuracy:
+Precision: 0.8344239427466511
+Recall: 0.915263006494724
+F-Score: 0.8729725144298206
+NDCG: 0.8219839299989786
+
+ No. of factors:10, learning rate:0.01
+
+ Training Set accuracy:
+Precision: 0.9587089319463974
+Recall: 0.6213276730933521
+F-Score: 0.7539926906335986
+NDCG: 0.8903511359234746
+
+ Test Set accuracy:
+Precision: 0.8650390175821068
+Recall: 0.8185491113294961
+F-Score: 0.8411428565029511
+NDCG: 0.8180107357652353
+
+ No. of factors:10, learning rate:0.02
+
+ Training Set accuracy:
+Precision: 0.9881456850122919
+Recall: 0.6434252833450543
+F-Score: 0.7793653855759591
+NDCG: 0.9635802113787081
+
+ Test Set accuracy:
+Precision: 0.8559953358224859
+Recall: 0.7857520234101449
+F-Score: 0.8193543962424669
+NDCG: 0.810680530985442
+
+ No. of factors:10, learning rate:0.05
+
+ Training Set accuracy:
+Precision: 0.9999626977021785
+Recall: 0.6507804515890693
+F-Score: 0.7884393877401868
+NDCG: 0.9979991331883038
+
+ Test Set accuracy:
+Precision: 0.8557599740693881
+Recall: 0.7573846677579639
+F-Score: 0.8035632814532406
+NDCG: 0.8024938688745228
+
+ No. of factors:15, learning rate:0.0001
+
+ Training Set accuracy:
+Precision: 0.8424961987182189
+Recall: 0.6340201740653005
+F-Score: 0.7235375571156167
+NDCG: 0.6942719061125929
+
+ Test Set accuracy:
+Precision: 0.8206392991244091
+Recall: 0.919517018364755
+F-Score: 0.8672673730350509
+NDCG: 0.7934577626569745
+
+ No. of factors:15, learning rate:0.001
+
+ Training Set accuracy:
+Precision: 0.8855683626778051
+Recall: 0.6538545245229117
+F-Score: 0.7522701592937813
+NDCG: 0.7904809427510067
+
+ Test Set accuracy:
+Precision: 0.8323615328746661
+Recall: 0.9147545694083845
+F-Score: 0.8716057844545616
+NDCG: 0.820324125962467
+
+ No. of factors:15, learning rate:0.01
+
+ Training Set accuracy:
+Precision: 0.9660144093447577
+Recall: 0.6283361316234704
+F-Score: 0.7614118300280867
+NDCG: 0.9109121596219151
+
+ Test Set accuracy:
+Precision: 0.8600116973567311
+Recall: 0.8197394346183062
+F-Score: 0.8393875752780027
+NDCG: 0.8180291663150542
+
+ No. of factors:15, learning rate:0.02
+
+ Training Set accuracy:
+Precision: 0.9932390473348399
+Recall: 0.6481406014887987
+F-Score: 0.7844094340286341
+NDCG: 0.9803913424711086
+
+ Test Set accuracy:
+Precision: 0.8599963372096016
+Recall: 0.7949809529696037
+F-Score: 0.8261984208580364
+NDCG: 0.8116116179138329
+
+ No. of factors:15, learning rate:0.05
+
+ Training Set accuracy:
+Precision: 1.0
+Recall: 0.6532916877764143
+F-Score: 0.7902913662547425
+NDCG: 0.9999460697739178
+
+ Test Set accuracy:
+Precision: 0.8516663411383297
+Recall: 0.7726154469260995
+F-Score: 0.8102006939699407
+NDCG: 0.8036168843415927
+
+ No. of factors:20, learning rate:0.0001
+
+ Training Set accuracy:
+Precision: 0.8401855878131588
+Recall: 0.6334689087413077
+F-Score: 0.7223274354396036
+NDCG: 0.6838881261115185
+
+ Test Set accuracy:
+Precision: 0.818732572221898
+Recall: 0.9192681294119529
+F-Score: 0.8660888748929333
+NDCG: 0.7836064593194787
+
+ No. of factors:20, learning rate:0.001
+
+ Training Set accuracy:
+Precision: 0.8868448117832599
+Recall: 0.6554002756016717
+F-Score: 0.7537537143078701
+NDCG: 0.7938105431682173
+
+ Test Set accuracy:
+Precision: 0.8334180980379859
+Recall: 0.9138546819089508
+F-Score: 0.8717774321845817
+NDCG: 0.8196324899836815
+
+ No. of factors:20, learning rate:0.01
+
+ Training Set accuracy:
+Precision: 0.9705968190021452
+Recall: 0.6313331885016371
+F-Score: 0.7650375315213962
+NDCG: 0.9250521292787292
+
+ Test Set accuracy:
+Precision: 0.8619504799201951
+Recall: 0.8202818720663991
+F-Score: 0.8405933484853457
+NDCG: 0.8196875816002387
+
+ No. of factors:20, learning rate:0.02
+
+ Training Set accuracy:
+Precision: 0.995687143851871
+Recall: 0.6492451550248158
+F-Score: 0.7859833016229614
+NDCG: 0.989778834366045
+
+ Test Set accuracy:
+Precision: 0.8595471207141898
+Recall: 0.7960184730828348
+F-Score: 0.8265424932777605
+NDCG: 0.8098265817335708
+
+ No. of factors:20, learning rate:0.05
+
+ Training Set accuracy:
+Precision: 1.0
+Recall: 0.6537156496435069
+F-Score: 0.7906010255974636
+NDCG: 1.0
+
+ Test Set accuracy:
+Precision: 0.8506383795431105
+Recall: 0.7754273800612206
+F-Score: 0.8112668007035923
+NDCG: 0.804356971802081
+
+ No. of factors:50, learning rate:0.0001
+
+ Training Set accuracy:
+Precision: 0.8370631190405108
+Recall: 0.6307958715655296
+F-Score: 0.719433785381782
+NDCG: 0.671912661322273
+
+ Test Set accuracy:
+Precision: 0.8187225822283266
+Recall: 0.9181562790232314
+F-Score: 0.8655867263009155
+NDCG: 0.7791877490709345
+
+ No. of factors:50, learning rate:0.001
+
+ Training Set accuracy:
+Precision: 0.8933698718221968
+Recall: 0.659312984960494
+F-Score: 0.7586992585757103
+NDCG: 0.8115354857618705
+
+ Test Set accuracy:
+Precision: 0.8313044186967085
+Recall: 0.9127539491507678
+F-Score: 0.8701198702195229
+NDCG: 0.8140629178124955
+
+ No. of factors:50, learning rate:0.01
+
+ Training Set accuracy:
+Precision: 0.9861548969035538
+Recall: 0.6488728379301436
+F-Score: 0.7827234990137673
+NDCG: 0.9712349680942147
+
+ Test Set accuracy:
+Precision: 0.8573662188090829
+Recall: 0.8263778122791706
+F-Score: 0.8415681658547544
+NDCG: 0.8185452403993702
+
+ No. of factors:50, learning rate:0.02
+
+ Training Set accuracy:
+Precision: 0.9999027475806795
+Recall: 0.6519287313156015
+F-Score: 0.7892628862003984
+NDCG: 0.9997054702452359
+
+ Test Set accuracy:
+Precision: 0.8566375917234288
+Recall: 0.811222224799476
+F-Score: 0.8332870217496
+NDCG: 0.8090209726610191
+
+ No. of factors:50, learning rate:0.05
+
+ Training Set accuracy:
+Precision: 1.0
+Recall: 0.659220502817509
+F-Score: 0.7946140628173638
+NDCG: 1.0
+
+ Test Set accuracy:
+Precision: 0.8561736215636256
+Recall: 0.8096475078178847
+F-Score: 0.8322527678801954
+NDCG: 0.8147133640770652
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{test\PYZus{}f\PYZus{}score}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} array([[0.86737562, 0.87092662, 0.83987407, 0.82272366, 0.79535801],
+               [0.86756727, 0.87297251, 0.84114286, 0.8193544 , 0.80356328],
+               [0.86726737, 0.87160578, 0.83938758, 0.82619842, 0.81020069],
+               [0.86608887, 0.87177743, 0.84059335, 0.82654249, 0.8112668 ],
+               [0.86558673, 0.87011987, 0.84156817, 0.83328702, 0.83225277]])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{test\PYZus{}ndcg}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} array([[0.79687337, 0.81939426, 0.82215032, 0.81317833, 0.79823242],
+                [0.79278898, 0.82198393, 0.81801074, 0.81068053, 0.80249387],
+                [0.79345776, 0.82032413, 0.81802917, 0.81161162, 0.80361688],
+                [0.78360646, 0.81963249, 0.81968758, 0.80982658, 0.80435697],
+                [0.77918775, 0.81406292, 0.81854524, 0.80902097, 0.81471336]])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{factors}\PY{p}{,} \PY{n}{test\PYZus{}f\PYZus{}score}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{factors}\PY{p}{,} \PY{n}{train\PYZus{}f\PYZus{}score}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No.of factors (learnning rate=0.001, reg=0.02)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F\PYZhy{}score}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{validation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{training}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{factors}\PY{p}{,} \PY{n}{test\PYZus{}ndcg}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{factors}\PY{p}{,} \PY{n}{train\PYZus{}ndcg}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No.of factors (learnning rate=0.001, reg=0.02)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NDCG}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{validation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{training}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} <matplotlib.legend.Legend at 0x26e64ed16a0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{learning\PYZus{}rates}\PY{p}{,} \PY{n}{test\PYZus{}f\PYZus{}score}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{learning\PYZus{}rates}\PY{p}{,} \PY{n}{train\PYZus{}f\PYZus{}score}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Learning rates (factors=15, reg=0.02)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F\PYZhy{}score}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{validation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{training}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{learning\PYZus{}rates}\PY{p}{,} \PY{n}{test\PYZus{}ndcg}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{learning\PYZus{}rates}\PY{p}{,} \PY{n}{train\PYZus{}ndcg}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Learning rates (factors=15, reg=0.02)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NDCG}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{validation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{training}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} <matplotlib.legend.Legend at 0x26e64c98940>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{pearson-correlation-coefficient}{%
+\section{Pearson Correlation
+Coefficient}\label{pearson-correlation-coefficient}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{}creating the data}
+         \PY{n}{data}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{19}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{13}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{15}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{}Converting into DataFrame}
+         \PY{n}{y}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{p}{,}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Advertisement\PYZus{}Exp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Annual\PYZus{}Sales}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}Confirming the result\PYZbs{}}
+         \PY{n}{y}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:}    Advertisement\_Exp  Annual\_Sales
+         0                  9            19
+         1                  7            13
+         2                  5            12
+         3                  8            16
+         4                  6            15
+         5                  3            10
+         6                  4             8
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{y}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}Calculating the Pearson Correaltion Coefficient}
+         \PY{n}{y}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Advertisement\PYZus{}Exp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{n}{y}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Annual\PYZus{}Sales}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} 0.9103664774626048
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

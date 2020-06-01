@@ -1,0 +1,29 @@
+
+
+create a repo in git hub
+
+copy the http .git
+
+go to the git dir
+mkdir PrjectName
+cd PrjectName
+
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/<your_username>/Demo.git
+git push -u origin master
+
+"add the files"
+
+vscode  
+
+clrt + Shift + P
+Select Python Interpretor (>Python: Select Interpreter)
+Select anaconda enviroment to use 
+.vscode would be initialized (specifying the enviroment)
+
+git add .
+git commit
+git push -u origin master
+ 
